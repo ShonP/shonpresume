@@ -1,0 +1,140 @@
+---
+title: "Building an MCP Live Chat Agent with Real-Time Streaming"
+date: "2026-01-10"
+excerpt: "A deep dive into the Model Context Protocol (MCP) with a real-time chat application that lets you watch AI agents think and work through problems step-by-step."
+category: "tech"
+tags: ["MCP", "AI Agents", "OpenAI", "NestJS", "React", "SSE"]
+---
+
+## Introduction
+
+The **Model Context Protocol (MCP)** is revolutionizing how we build AI-powered applications. In this post, I'll walk you through an open-source project that demonstrates MCP in action: a real-time chat application where you can literally watch the AI agent think and work through problems.
+
+<Callout type="info">
+Check out the full source code on GitHub: [MCP-Example-live-chat](https://github.com/ShonP/MCP-Example-live-chat)
+</Callout>
+
+## What is MCP?
+
+MCP (Model Context Protocol) is a standardized way for AI models to interact with external tools and data sources. Think of it as giving your AI agent "superpowers" - the ability to query databases, fetch real-time data, and perform actions beyond just generating text.
+
+## Project Features
+
+The MCP Live Chat Agent demonstrates several cutting-edge capabilities:
+
+- 🤖 **AI Agent with OpenAI GPT-5.1** - Latest model integration
+- 🔧 **Multi-MCP Server Support** - Connects to multiple MCP servers simultaneously
+- 📡 **Real-time SSE Streaming** - See the agent's thinking process live
+- 🎨 **Copilot-style UI** - Collapsible reasoning steps
+- 🌙 **Dark/Light Mode** - Modern theming support
+
+<ChartBar
+  data={[
+    { name: "Tool Calls", score: 30 },
+    { name: "Reasoning Steps", score: 15 },
+    { name: "Data Sources", score: 5 },
+    { name: "Response Time (ms)", score: 200 }
+  ]}
+  dataKey="score"
+  color="#10b981"
+/>
+
+## Architecture
+
+The application follows a clean, modular architecture:
+
+```
+┌─────────────────┐     SSE Events      ┌─────────────────┐     MCP (stdio)     ┌─────────────────┐
+│     Frontend    │◄───────────────────│     Backend     │◄──────────────────►│  Flight Server  │
+│   (React/Vite)  │     HTTP POST      │    (NestJS)     │                    │  (TypeScript)   │
+│                 │──────────────────►│                 │                    └─────────────────┘
+└─────────────────┘                    │                 │     MCP (stdio)     ┌─────────────────┐
+                                       │                 │◄──────────────────►│  Fabric RTI     │
+                                       └─────────────────┘                    │  (Python/uvx)   │
+                                                                              └─────────────────┘
+```
+
+## MCP Servers Included
+
+This project connects to multiple MCP servers:
+
+| Server | Purpose | Example Tools |
+|--------|---------|---------------|
+| **Flight Server** | Local flight/passenger data | `get_flights`, `get_passengers_by_flight`, `count_passengers_by_flight` |
+| **Fabric RTI** | Microsoft Fabric Real-Time Intelligence | `kusto_query`, `eventstream_list`, `activator_create_trigger` |
+
+<Callout type="success">
+The Flight Server is a local TypeScript MCP server with mock data - perfect for learning MCP development!
+</Callout>
+
+## How It Works
+
+The magic happens through Server-Sent Events (SSE):
+
+1. **User sends a message** → Frontend POSTs to `/agent/ask`
+2. **Backend receives request** → Opens SSE stream to client
+3. **Agent starts reasoning** → Calls `annotate_step` to narrate thinking
+4. **Agent calls MCP tools** → Backend forwards to MCP server
+5. **Results stream back** → Each step is sent as an SSE event
+6. **Frontend displays live** → Shows current step with pulsing indicator
+7. **Completion** → Steps collapse into "Reasoned in X steps"
+
+## Tech Stack
+
+<ChartBar
+  data={[
+    { name: "TypeScript", score: 74 },
+    { name: "JavaScript", score: 23 },
+    { name: "CSS", score: 2 },
+    { name: "HTML", score: 1 }
+  ]}
+  dataKey="score"
+  color="#3b82f6"
+/>
+
+- **Frontend**: React 19, Vite, Emotion, TypeScript
+- **Backend**: NestJS, OpenAI SDK, MCP SDK
+- **MCP Server**: TypeScript, @modelcontextprotocol/sdk
+- **Streaming**: Server-Sent Events (SSE)
+
+## Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/ShonP/MCP-Example-live-chat.git
+cd MCP-Example-live-chat
+
+# Install dependencies
+npm install
+cd mcp-server && npm install && npm run build && cd ..
+cd backend && npm install && cd ..
+cd frontend && npm install && cd ..
+
+# Configure environment
+echo "OPENAI_API_KEY=your-key" > backend/.env
+
+# Run the application
+npm run dev
+```
+
+## Why This Matters
+
+MCP is becoming the standard for how AI agents interact with the world. By understanding MCP:
+
+- You can build **production-ready AI agents** that do more than just chat
+- You can **integrate any data source** into your AI workflows
+- You can create **observable AI systems** where users see the reasoning process
+
+<Callout type="warning">
+MCP is still evolving. Keep an eye on the [official MCP specification](https://modelcontextprotocol.io/) for updates.
+</Callout>
+
+## Conclusion
+
+The MCP Live Chat Agent is a great starting point for anyone looking to build AI applications with real-time tool usage and transparent reasoning. The combination of MCP, SSE streaming, and a modern React UI creates a compelling developer experience.
+
+Try it out, extend it with your own MCP servers, and let me know what you build!
+
+---
+
+**Source Code**: [github.com/ShonP/MCP-Example-live-chat](https://github.com/ShonP/MCP-Example-live-chat)

@@ -1,0 +1,171 @@
+---
+title: "Kusto Agent: AI-Powered KQL Query Generation"
+date: "2026-01-11"
+excerpt: "An open-source AI agent that helps you write and optimize KQL queries for Azure Data Explorer, featuring a Chrome extension for seamless integration."
+category: "tech"
+tags: ["Azure", "KQL", "AI", "Chrome Extension", "Kusto", "DevOps"]
+---
+
+<YouTube videoId="5VVXOyeuoBQ" title="Kusto Agent Demo" />
+
+## Introduction
+
+If you work with **Azure Data Explorer** (Kusto), you know that writing KQL queries can be challenging. The syntax is powerful but has a learning curve. What if you could just describe what you want in plain English and have AI generate the query for you?
+
+That's exactly what **Kusto Agent** does.
+
+<Callout type="info">
+📦 **Source Code**: [github.com/ShonP/kusto-assistant](https://github.com/ShonP/kusto-assistant)
+</Callout>
+
+## What is Kusto Agent?
+
+Kusto Agent is an AI-powered tool that integrates directly into Azure Data Explorer through a Chrome extension. Simply write a comment describing what you want, press a keyboard shortcut, and watch as the AI generates the perfect KQL query.
+
+## Key Features
+
+- 🤖 **AI-powered KQL query generation** - Describe what you want in natural language
+- 🔍 **Query optimization suggestions** - Get recommendations to improve your queries
+- 📊 **Context-aware assistance** - Uses your actual database schema for accurate queries
+- 🔧 **Chrome extension** - Seamless integration with Azure Data Explorer
+
+<ChartBar
+  data={[
+    { name: "Query Accuracy", score: 95 },
+    { name: "Time Saved", score: 80 },
+    { name: "Learning Curve", score: 90 },
+    { name: "Integration Ease", score: 85 }
+  ]}
+  dataKey="score"
+  color="#8b5cf6"
+/>
+
+## How It Works
+
+The architecture is simple but powerful:
+
+1. **Chrome Extension** - Captures your comment in Azure Data Explorer
+2. **Backend Service** - Runs locally via Docker, connecting to Azure OpenAI
+3. **Schema Awareness** - Fetches your database schema for context
+4. **Query Generation** - AI generates KQL based on your description
+
+## Quick Start
+
+### Prerequisites
+
+- Docker installed
+- Azure CLI installed
+- Azure OpenAI or OpenAI API access
+- Azure Data Explorer cluster access
+
+### Step 1: Login to Azure
+
+```bash
+az login
+```
+
+### Step 2: Run the Docker Container
+
+```bash
+docker pull crkassistprodeus2001.azurecr.io/kusto-assistant-backend:latest
+
+docker run -d -p 3847:3847 \
+  -e LLM_PROVIDER=azure-openai-identity \
+  -e AZURE_OPENAI_ENDPOINT=https://your-openai.cognitiveservices.azure.com/ \
+  -e AZURE_OPENAI_DEPLOYMENT=your-deployment-name \
+  -e AZURE_OPENAI_API_VERSION=2024-12-01-preview \
+  -e LLM_MODEL=gpt-5.1 \
+  -v ~/.azure:/root/.azure \
+  crkassistprodeus2001.azurecr.io/kusto-assistant-backend:latest
+```
+
+### Step 3: Install the Chrome Extension
+
+1. Download the extension from the [releases page](https://stkassistprodeus2001.blob.core.windows.net/extension/kusto-assistant-latest.zip)
+2. Extract the zip file
+3. Open Chrome → `chrome://extensions`
+4. Enable Developer mode
+5. Click "Load unpacked" and select the extracted folder
+
+### Step 4: Use It!
+
+1. Open [Azure Data Explorer](https://dataexplorer.azure.com/)
+2. Write a comment describing what you want, e.g., `// get all logs from the last hour`
+3. Press `Alt+K` (Windows) or `Cmd+K` (macOS)
+4. Watch the AI generate your KQL query!
+
+<Callout type="success">
+The assistant understands your database schema, so it knows your table names, column types, and relationships!
+</Callout>
+
+## Configuration Options
+
+The assistant supports multiple LLM providers:
+
+| Provider | Description | Authentication |
+|----------|-------------|----------------|
+| `azure-openai-identity` | Azure OpenAI with managed identity (recommended) | `az login` credentials |
+| `azure-openai-key` | Azure OpenAI with API key | `AZURE_OPENAI_API_KEY` |
+| `openai` | OpenAI API | `OPENAI_API_KEY` |
+
+## Windows Users: WSL Required
+
+<Callout type="warning">
+Windows encrypts Azure CLI tokens with DPAPI, which Linux containers cannot read. You must use **WSL Ubuntu** to run Docker with Azure identity authentication.
+</Callout>
+
+```bash
+# Install Ubuntu for WSL
+wsl --install -d Ubuntu
+
+# Inside Ubuntu, install Azure CLI
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+# Login and run the container
+az login
+docker run -d -p 3847:3847 ...
+```
+
+## Tech Stack
+
+<ChartBar
+  data={[
+    { name: "TypeScript", score: 97 },
+    { name: "HTML", score: 1 },
+    { name: "Other", score: 2 }
+  ]}
+  dataKey="score"
+  color="#10b981"
+/>
+
+- **Backend**: NestJS with Azure OpenAI integration
+- **Chrome Extension**: TypeScript with content scripts
+- **Infrastructure**: Docker, Azure Container Registry
+- **Authentication**: Azure Managed Identity
+
+## Why I Built This
+
+As someone who works with Kusto daily, I found myself constantly looking up syntax and writing boilerplate queries. With AI becoming so capable, it seemed natural to create a tool that:
+
+1. **Lowers the barrier** to using Azure Data Explorer
+2. **Speeds up workflows** for experienced users
+3. **Teaches best practices** through generated queries
+
+## What's Next?
+
+Some ideas for future improvements:
+
+- Query history and favorites
+- Team sharing of common query patterns
+- Support for more LLM providers
+- VS Code extension
+
+## Conclusion
+
+Kusto Agent brings the power of AI directly into your Azure Data Explorer workflow. Whether you're new to KQL or an experienced data engineer, having an AI assistant that understands your schema can significantly boost your productivity.
+
+Give it a try and let me know what you think!
+
+---
+
+**Source Code**: [github.com/ShonP/kusto-assistant](https://github.com/ShonP/kusto-assistant)

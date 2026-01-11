@@ -1,0 +1,225 @@
+{
+  "metadata": {
+    "title": "שון פזרקר | מהנדס AI Full Stack וארכיטקט Azure",
+    "description": "מהנדס תוכנה בכיר במיקרוסופט המתמחה בסוכני AI, מודלי שפה גדולים, פיתוח Full Stack, ארכיטקטורת ענן Azure ו-DevOps. בונה מערכות חכמות מקצה לקצה."
+  },
+  "nav": {
+    "about": "אודות",
+    "experience": "ניסיון",
+    "services": "שירותים",
+    "tools": "כלים",
+    "blog": "בלוג",
+    "contact": "צור קשר"
+  },
+  "hero": {
+    "greeting": "שלום, אני",
+    "name": "שון פזרקר",
+    "title": "מהנדס AI Full Stack וארכיטקט Azure",
+    "subtitle": "בונה מערכות חכמות מקצה לקצה: מסוכני AI ומודלי שפה גדולים ועד תשתיות ענן. אני גם משתף תובנות על טכנולוגיה ופיננסים.",
+    "cta": "בואו נדבר",
+    "downloadCV": "הורדת קורות חיים"
+  },
+  "about": {
+    "title": "אודות",
+    "paragraphs": [
+      "אני מהנדס תוכנה בכיר במיקרוסופט, מתמחה בצומת שבין AI לפיתוח Full Stack. אני בונה מערכות AI ברמת ייצור כולל סוכני Copilot, אפליקציות מבוססות LLM וכלי אוטומציה חכמים באמצעות טכנולוגיות כמו MCP (Model Context Protocol) וגרעינים סמנטיים.",
+      "המומחיות שלי משתרעת על כל המחסנית: מ-Frontend ב-React ו-Next.js, דרך Backend ב-.NET ו-Node.js, ועד ארכיטקטורת ענן Azure עם Infrastructure as Code (Bicep, Terraform). אני מתכנן מערכות סקיילביליות ומאובטחות עם CI/CD, קונטיינריזציה ו-DevOps.",
+      "אני עובד גם עם Python, יוצר Jupyter Notebooks לניתוח Big Data ב-Kusto. אני בונה מערכות הערכה לסוכני AI שמודדות דיוק ומשתמשות ב-LLM לשיפור איטרטיבי של ה-System Prompt על בסיס תוצאות בדיקות."
+    ],
+    "skills": [
+      ".NET & Node.js",
+      "ארכיטקטורת Azure",
+      "סוכני AI ומודלי LLM",
+      "Agentic AI",
+      "Python & Jupyter",
+      "React & Next.js"
+    ]
+  },
+  "skills": {
+    "title": "כישורים מובילים",
+    "categories": {
+      "frontend": {
+        "name": "Frontend",
+        "items": "React, Angular, Next.js, TypeScript, Tailwind CSS"
+      },
+      "backend": {
+        "name": "Backend",
+        "items": "Node.js, .NET, Python, C#, REST APIs"
+      },
+      "cloud": {
+        "name": "ענן ו-Azure",
+        "items": "Microsoft Azure, Bicep, Terraform, ARM Templates"
+      },
+      "ai": {
+        "name": "AI ומודלי שפה",
+        "items": "Copilot, GPT, Claude, MCP, Agentic AI, RAG"
+      },
+      "database": {
+        "name": "בסיסי נתונים",
+        "items": "Kusto (ADX), SQL Server, CosmosDB, MongoDB"
+      },
+      "devops": {
+        "name": "DevOps",
+        "items": "CI/CD, Docker, Git, Azure DevOps, GitHub Actions"
+      }
+    }
+  },
+  "education": {
+    "title": "השכלה ושפות",
+    "items": {
+      "degree1": {
+        "degree": "הנדסת חשמל ואלקטרוניקה",
+        "institution": "HIT - מכון טכנולוגי חולון",
+        "location": "חולון, ישראל",
+        "period": "10/2020 – 10/2024"
+      },
+      "degree2": {
+        "degree": "הנדסאי תוכנה",
+        "institution": "אורט סינגלובסקי",
+        "location": "תל אביב, ישראל",
+        "period": "09/2015 – 06/2017"
+      }
+    },
+    "languages": {
+      "title": "שפות",
+      "hebrew": {
+        "name": "עברית",
+        "level": "שפת אם"
+      },
+      "english": {
+        "name": "אנגלית",
+        "level": "שוטף"
+      }
+    }
+  },
+  "experience": {
+    "title": "ניסיון",
+    "viewCV": "צפייה בקורות חיים",
+    "present": "היום",
+    "items": [
+      {
+        "title": "מהנדס תוכנה בכיר",
+        "company": "מיקרוסופט, הרצליה",
+        "period": "06/2021 - היום",
+        "description": "פיתוח יכולות Backend ברמה ארגונית במסגרת Microsoft Power Platform ו-Copilot Studio. פיתוח סוכן Kusto Copilot להמרת שפה טבעית ל-KQL. הובלת פיתוח Backend לאפליקציות Teams מבוססות AI. ארכיטקטורה ופיתוח מלא של אפליקציית Meeting Prep. מנטורינג והובלה טכנית בתחומי Frontend, Backend ומערכות AI.",
+        "skills": ["React", ".NET", "Azure", "AI/LLMs", "Docker", "TypeScript"]
+      },
+      {
+        "title": "מהנדס תוכנה",
+        "company": "Welldone-Software",
+        "period": "07/2018 - 10/2020",
+        "description": "התמחות חזקה ב-Frontend עם React, TypeScript וטכנולוגיות ווב מודרניות. ביצוע פרויקטים עבור Microsoft, Salt Security, Unity (Bidalgo), 10Bis ועוד. בניית אפליקציות מאפס עם Webpack, Babel, ESLint, Storybook ו-Cypress. הטמעת CI/CD ואינטגרציה של GraphQL ו-Apollo.",
+        "skills": ["React", "TypeScript", "GraphQL", "Webpack", "Cypress", "Storybook"]
+      },
+      {
+        "title": "מהנדס תוכנה",
+        "company": "חיל האוויר הישראלי",
+        "period": "06/2017 - 02/2020",
+        "description": "שימוש ב-Azure DevOps לניהול גרסאות והטמעת CI/CD. פריסת אפליקציות מאובטחות בסביבות Windows Server. פיתוח עצמאי של מספר אפליקציות פנימיות באמצעות Angular, .NET Core ו-Node.js לשיפור הפרודוקטיביות והיעילות התפעולית.",
+        "skills": ["Angular", ".NET Core", "Node.js", "Azure DevOps", "Windows Server"]
+      }
+    ]
+  },
+  "services": {
+    "title": "שירותים",
+    "items": [
+      {
+        "title": "ייעוץ השקעות",
+        "description": "בניית תיק השקעות מותאם אישית, ניתוח מניות ואסטרטגיית השקעה לטווח ארוך.",
+        "icon": "chart"
+      },
+      {
+        "title": "ייעוץ נדל\"ן",
+        "description": "איתור הזדמנויות בנדל\"ן מניב בישראל ובארה\"ב, ניתוח עסקאות וליווי רכישות.",
+        "icon": "building"
+      },
+      {
+        "title": "פיתוח תוכנה",
+        "description": "בניית אתרים, אפליקציות ומערכות מותאמות אישית לעסקים ויזמים.",
+        "icon": "code"
+      },
+      {
+        "title": "ניתוח פיננסי",
+        "description": "ניתוח דוחות כספיים, מודלים פיננסיים והערכות שווי לחברות ומניות.",
+        "icon": "calculator"
+      }
+    ],
+    "cta": "לפרטים נוספים"
+  },
+  "blog": {
+    "title": "מהבלוג",
+    "readMore": "קרא עוד",
+    "allPosts": "כל הפוסטים",
+    "minRead": "דקות קריאה",
+    "categories": {
+      "finance": "פיננסים",
+      "real-estate": "נדל\"ן",
+      "tech": "טכנולוגיה",
+      "stock-market": "שוק ההון"
+    },
+    "noPosts": "אין פוסטים עדיין",
+    "backToBlog": "חזרה לבלוג"
+  },
+  "tools": {
+    "title": "כלים פיננסיים",
+    "subtitle": "מחשבונים וכלים חינמיים לקבלת החלטות פיננסיות חכמות",
+    "backToTools": "חזרה לכלים",
+    "items": {
+      "compoundInterest": {
+        "title": "מחשבון ריבית דריבית",
+        "description": "ראו כיצד הכסף שלכם צומח לאורך זמן בעזרת כוח הריבית דריבית"
+      },
+      "rentalYield": {
+        "title": "מחשבון תשואת שכירות",
+        "description": "חשבו את התשואה הפוטנציאלית על השקעת הנדל״ן שלכם"
+      },
+      "taxCalculator": {
+        "title": "מחשבון מס",
+        "description": "הערכת חבות המס על רווחי השקעות והכנסות"
+      },
+      "savingsGoal": {
+        "title": "מתכנן יעדי חיסכון",
+        "description": "תכננו כמה לחסוך בחודש כדי להגיע ליעדים הפיננסיים שלכם"
+      }
+    },
+    "compoundInterest": {
+      "title": "מחשבון ריבית דריבית",
+      "description": "ראו כיצד הכסף שלכם צומח לאורך זמן בעזרת כוח הריבית דריבית"
+    }
+  },
+  "newsletter": {
+    "title": "הצטרפו לניוזלטר",
+    "description": "קבלו תובנות שבועיות על שוק ההון, נדל\"ן וטכנולוגיה ישירות למייל.",
+    "placeholder": "הכניסו את המייל שלכם",
+    "button": "הרשמה",
+    "success": "תודה על ההרשמה!",
+    "error": "שגיאה, נסו שוב"
+  },
+  "contact": {
+    "title": "צור קשר",
+    "subtitle": "מעוניינים בייעוץ או שיתוף פעולה? אשמח לשמוע מכם.",
+    "email": "שלחו מייל",
+    "phone": "התקשרו",
+    "form": {
+      "name": "שם",
+      "email": "אימייל",
+      "message": "הודעה",
+      "send": "שלח הודעה"
+    }
+  },
+  "footer": {
+    "rights": "כל הזכויות שמורות",
+    "built": "נבנה עם",
+    "openSource": "הפרויקט הזה קוד פתוח לחלוטין - מוזמנים להשתמש!"
+  },
+  "common": {
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "close": "סגור",
+    "backToHome": "חזרה לעמוד הראשי",
+    "share": "שתף",
+    "switchLang": "English",
+    "toggleTheme": "החלף ערכת נושא",
+    "comingSoon": "בקרוב"
+  }
+}
