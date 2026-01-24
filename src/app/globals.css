@@ -5,6 +5,7 @@
   --foreground: #ededed;
   --primary: #22c55e;
   --primary-light: #4ade80;
+  --primary-foreground: #0a0a0a;
   --muted: #737373;
   --card: #171717;
   --card-hover: #1f1f1f;
@@ -17,6 +18,7 @@
   --foreground: #1a1a1a;
   --primary: #16a34a;
   --primary-light: #22c55e;
+  --primary-foreground: #ffffff;
   --muted: #6b7280;
   --card: #f9fafb;
   --card-hover: #f3f4f6;
@@ -30,6 +32,7 @@
     --foreground: #1a1a1a;
     --primary: #16a34a;
     --primary-light: #22c55e;
+    --primary-foreground: #ffffff;
     --muted: #6b7280;
     --card: #f9fafb;
     --card-hover: #f3f4f6;

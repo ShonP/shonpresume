@@ -295,6 +295,7 @@
   "contact": {
     "title": "Contact",
     "subtitle": "Interested in consulting or collaboration? I'd love to hear from you.",
+    "contactForm": "Contact Form",
     "email": "Send Email",
     "phone": "Call",
     "form": {
