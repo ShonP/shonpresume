@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
-import { Menu, X, Globe, Cpu, ChevronDown } from "lucide-react";
+import { Menu, X, Globe, Cpu, ChevronDown, Layout } from "lucide-react";
 // TODO: Uncomment when restoring Tools and Finance
 // import { Calculator, TrendingUp, Landmark, PiggyBank, DollarSign } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -19,6 +19,7 @@ export const Header: FC = () => {
   // TODO: Uncomment when restoring Tools
   // const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
   const [mobileBlogOpen, setMobileBlogOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   // For English (default), use root path. For Hebrew, use /he
   const localePath = locale === "en" ? "" : `/${locale}`;
@@ -69,6 +70,14 @@ export const Header: FC = () => {
     //   href: `${localePath}/blog/category/finance`,
     //   icon: <DollarSign size={16} />,
     // },
+  ];
+
+  const servicesDropdownItems = [
+    {
+      name: t("landingPages.nav.title"),
+      href: `${localePath}/services/landing-pages`,
+      icon: <Layout size={16} />,
+    },
   ];
 
   useEffect(() => {
@@ -127,6 +136,7 @@ export const Header: FC = () => {
               {link.name}
             </Link>
           ))}
+          <NavDropdown label={t("nav.services")} items={servicesDropdownItems} />
           {/* TODO: Uncomment when restoring Tools */}
           {/* <NavDropdown label={t("nav.tools")} items={toolsDropdownItems} /> */}
           <NavDropdown label={t("nav.blog")} items={blogDropdownItems} />
@@ -214,6 +224,38 @@ export const Header: FC = () => {
                 </div>
               )}
             </div> */}
+
+            {/* Mobile Services Dropdown */}
+            <div>
+              <button
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                className="flex items-center justify-between w-full py-2 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+              >
+                {t("nav.services")}
+                <ChevronDown
+                  size={16}
+                  className={cn(
+                    "transition-transform duration-200",
+                    mobileServicesOpen && "rotate-180"
+                  )}
+                />
+              </button>
+              {mobileServicesOpen && (
+                <div className="ps-4 space-y-1 border-s-2 border-[var(--primary)]/30 ms-2">
+                  {servicesDropdownItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-2 py-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                    >
+                      <span className="text-[var(--primary)]">{item.icon}</span>
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Mobile Blog Dropdown */}
             <div>
