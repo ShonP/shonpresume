@@ -2,6 +2,7 @@
 
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Menu, X, Globe, Cpu, ChevronDown, Layout } from "lucide-react";
@@ -13,6 +14,7 @@ import { NavDropdown } from "./NavDropdown";
 export const Header: FC = () => {
   const t = useTranslations();
   const locale = useLocale();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -103,7 +105,14 @@ export const Header: FC = () => {
   }, []);
 
   const switchLocale = locale === "he" ? "en" : "he";
-  const switchLocaleHref = switchLocale === "en" ? "/" : "/he";
+  // Get current path without locale prefix and build the new locale path
+  const pathWithoutLocale = pathname.replace(/^\/(he|en)/, "") || "/";
+  // For individual blog posts, redirect to blog index (posts may not exist in both languages)
+  const isBlogPost = /^\/blog\/[^/]+$/.test(pathWithoutLocale) && !pathWithoutLocale.includes("/category/");
+  const targetPath = isBlogPost ? "/blog" : pathWithoutLocale;
+  const switchLocaleHref = switchLocale === "en" 
+    ? targetPath 
+    : `/he${targetPath === "/" ? "" : targetPath}`;
 
   return (
     <header

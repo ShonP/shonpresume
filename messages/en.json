@@ -244,6 +244,10 @@
     "readMore": "Read More",
     "allPosts": "All Posts",
     "minRead": "min read",
+    "searchPlaceholder": "Search posts by title, content, or tags...",
+    "searchResults": "{count, plural, =1 {# post found} other {# posts found}}",
+    "noSearchResults": "No posts found matching your search",
+    "clearSearch": "Clear search",
     "categories": {
       "finance": "Finance",
       "real-estate": "Real Estate",

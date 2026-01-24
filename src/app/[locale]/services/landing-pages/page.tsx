@@ -97,7 +97,7 @@ const LandingPagesService: FC = () => {
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold hover:opacity-90 transition-opacity"
             >
               {t("hero.cta")}
-              <ArrowRight size={20} />
+              <ArrowRight size={20} className="rtl:rotate-180" />
             </Link>
           </motion.div>
         </div>

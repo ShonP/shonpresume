@@ -96,6 +96,48 @@ export function getPostsByCategory(category: string, locale: string = "he"): Pos
   return getAllPosts(locale).filter((post) => post.category === category);
 }
 
+export function getAllPostsWithContent(locale: string = "he"): Post[] {
+  ensurePostsDirectory(locale);
+  const postsDirectory = getPostsDirectory(locale);
+  
+  const files = fs.readdirSync(postsDirectory);
+  const posts = files
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => {
+      const slug = file.replace(/\.mdx$/, "");
+      const fullPath = path.join(postsDirectory, file);
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+      const { data, content } = matter(fileContents);
+
+      const wordsPerMinute = 200;
+      const words = content.trim().split(/\s+/).length;
+      const readingTime = Math.ceil(words / wordsPerMinute);
+
+      // Strip MDX/HTML tags for cleaner search
+      const cleanContent = content
+        .replace(/<[^>]*>/g, '')
+        .replace(/import.*from.*/g, '')
+        .replace(/export.*{.*}/g, '')
+        .replace(/```[\s\S]*?```/g, '')
+        .trim();
+
+      return {
+        slug,
+        title: data.title,
+        date: data.date,
+        excerpt: data.excerpt,
+        category: data.category,
+        tags: data.tags || [],
+        readingTime,
+        image: data.image,
+        content: cleanContent,
+      } as Post;
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  return posts;
+}
+
 export function getAllCategories(locale: string = "he"): string[] {
   const posts = getAllPosts(locale);
   const categories = new Set(posts.map((post) => post.category));

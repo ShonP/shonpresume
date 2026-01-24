@@ -244,6 +244,10 @@
     "readMore": "קרא עוד",
     "allPosts": "כל הפוסטים",
     "minRead": "דקות קריאה",
+    "searchPlaceholder": "חיפוש פוסטים לפי כותרת, תוכן או תגיות...",
+    "searchResults": "{count, plural, =1 {נמצא פוסט #} other {נמצאו # פוסטים}}",
+    "noSearchResults": "לא נמצאו פוסטים התואמים לחיפוש",
+    "clearSearch": "נקה חיפוש",
     "categories": {
       "finance": "פיננסים",
       "real-estate": "נדל\"ן",
