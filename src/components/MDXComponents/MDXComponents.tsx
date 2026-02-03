@@ -121,8 +121,17 @@ export const MDXComponents = {
       <table className="w-full border-collapse">{children}</table>
     </div>
   ),
+  thead: ({ children }: { children: ReactNode }) => (
+    <thead>{children}</thead>
+  ),
+  tbody: ({ children }: { children: ReactNode }) => (
+    <tbody>{children}</tbody>
+  ),
+  tr: ({ children }: { children: ReactNode }) => (
+    <tr>{children}</tr>
+  ),
   th: ({ children }: { children: ReactNode }) => (
-    <th className="border border-[var(--border)] bg-[var(--card)] p-3 text-right font-semibold">
+    <th className="border border-[var(--border)] bg-[var(--card)] p-3 text-start font-semibold">
       {children}
     </th>
   ),

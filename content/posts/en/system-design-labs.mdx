@@ -1,0 +1,151 @@
+---
+title: "System Design Labs: Learn by Building, Not Just Reading"
+date: "2026-02-03"
+excerpt: "Interactive Python notebooks for mastering system design patterns through hands-on experimentation with real infrastructure."
+category: "tech"
+tags: ["System Design", "Python", "Docker", "Redis", "PostgreSQL", "Architecture"]
+---
+
+## Introduction
+
+System design interviews are notorious. You're asked about scaling databases, handling concurrent writes, or building real-time notification systems. Most preparation involves reading blog posts and watching videos. But there's a problem: **you can't truly understand distributed systems until you break them**.
+
+That's why I created **System Design Labs** - a collection of interactive Jupyter notebooks that let you run, break, and fix actual distributed systems on your laptop.
+
+<Callout type="info">
+📦 **Source Code**: [github.com/ShonP/system-design-patterns](https://github.com/ShonP/system-design-patterns)
+</Callout>
+
+## The Problem with Learning System Design
+
+Traditional learning approaches fail for several reasons:
+
+<ChartBar
+  data={[
+    { name: "Reading Blogs", score: 30 },
+    { name: "Watching Videos", score: 40 },
+    { name: "Mock Interviews", score: 55 },
+    { name: "Building Projects", score: 75 },
+    { name: "Hands-on Labs", score: 95 }
+  ]}
+  dataKey="score"
+  color="#8b5cf6"
+/>
+
+You read that "optimistic locking is better when conflicts are rare" - but what does that actually mean? How rare is rare? What happens when conflicts aren't rare?
+
+System Design Labs lets you:
+
+- **Run real code** that demonstrates each pattern
+- **See failures happen** and understand why
+- **Compare approaches** side-by-side with actual metrics
+- **Experiment freely** without production consequences
+
+## What's Inside
+
+The repository covers 7 major patterns with 42 notebooks total:
+
+| Pattern | Description | Notebooks |
+| --- | --- | --- |
+| **Real-Time Updates** | Polling, SSE, WebSockets, Pub/Sub | 7 |
+| **Dealing with Contention** | Locks, optimistic concurrency, CRDTs | 5 |
+| **Scaling Reads** | Caching, read replicas, materialized views | 6 |
+| **Scaling Writes** | Sharding, partitioning, write buffering | 6 |
+| **Handling Large Blobs** | Chunked uploads, presigned URLs, CDN | 6 |
+| **Long Running Tasks** | Queues, workers, DLQ, backpressure | 6 |
+| **Multi-Step Processes** | Workflows, sagas, Temporal | 6 |
+
+## A Taste: The Concert Ticket Problem
+
+One of my favorite notebooks demonstrates **race conditions** with a concert ticket scenario:
+
+```
+Timeline of a Race Condition:
+────────────────────────────────────────────
+Alice's Request          Bob's Request
+────────────────────────────────────────────
+READ: "1 seat available"           
+                         READ: "1 seat available"
+CHECK: 1 >= 1 ✓                    
+                         CHECK: 1 >= 1 ✓
+UPDATE: seats = 0        
+                         UPDATE: seats = -1
+                         
+Result: Both get the SAME seat! 🔥
+────────────────────────────────────────────
+```
+
+You don't just read about this - you **run the code** and watch it fail. Then you implement solutions: pessimistic locking, optimistic concurrency, and distributed locks. You see exactly when each approach works and when it doesn't.
+
+## Real Infrastructure Included
+
+Each pattern comes with Docker Compose configuration for real services:
+
+| Service | Purpose |
+| --- | --- |
+| **PostgreSQL** | Database operations, transactions, locks |
+| **Redis** | Caching, queues, pub/sub, distributed locks |
+| **MinIO** | S3-compatible blob storage |
+| **Temporal** | Workflow orchestration |
+| **Adminer** | Database visualization |
+| **RedisInsight** | Redis monitoring |
+
+<Callout type="success">
+All visualization tools are included - you can watch locks being acquired, cache keys expiring, and messages flowing through queues in real-time!
+</Callout>
+
+## Real-World Applications
+
+These aren't theoretical patterns - they're battle-tested solutions used by companies you know:
+
+| Company | Problem | Pattern Used |
+| --- | --- | --- |
+| **Ticketmaster** | Seat booking conflicts | Pessimistic locking |
+| **Instagram** | Like counts on viral posts | Sharded counters |
+| **YouTube** | Billions of view updates | Hierarchical aggregation |
+| **Uber** | Real-time driver locations | WebSockets + pub/sub |
+| **WhatsApp** | Message delivery | SSE + presigned URLs |
+
+## Quick Start
+
+Getting started takes just 3 commands:
+
+```bash
+# Clone the repository
+git clone https://github.com/ShonP/system-design-patterns.git
+cd system-design-patterns
+
+# Pick a pattern (e.g., real-time-updates)
+cd patterns/real-time-updates
+
+# Start infrastructure and open notebooks
+docker compose up -d
+pip install -r requirements.txt
+jupyter notebook notebooks/
+```
+
+<Callout type="warning">
+**Prerequisites**: Python 3.10+, Docker & Docker Compose, uv (recommended) or pip
+</Callout>
+
+## Learning Path
+
+I recommend going through the patterns in this order:
+
+1. **Real-Time Updates** - Foundation concepts (HTTP, WebSockets)
+2. **Dealing with Contention** - Critical for any multi-user system
+3. **Scaling Reads** - Most common scaling problem
+4. **Scaling Writes** - When reads aren't enough
+5. **Long Running Tasks** - Async processing fundamentals
+6. **Large Blobs** - Media handling patterns
+7. **Multi-Step Processes** - Advanced orchestration
+
+## Try It Yourself
+
+Stop reading about system design. Start building it.
+
+<Callout type="info">
+🚀 **Get Started**: [github.com/ShonP/system-design-patterns](https://github.com/ShonP/system-design-patterns)
+</Callout>
+
+Each notebook builds on the previous one, so you develop deep understanding instead of surface-level familiarity. Break things. Fix them. That's how real learning happens.

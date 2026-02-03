@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { getPostBySlug, getAllPostSlugs } from "@/lib/posts";
 import { formatDate } from "@/lib/utils";
 import { Clock, Calendar, ArrowLeft } from "lucide-react";
@@ -110,7 +111,15 @@ export default async function BlogPostPage({ params }: IPageProps) {
         </header>
 
         <div className="prose max-w-none">
-          <MDXRemote source={post.content} components={MDXComponents} />
+          <MDXRemote
+            source={post.content}
+            components={MDXComponents}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+              },
+            }}
+          />
         </div>
 
         <footer className="mt-16 pt-8 border-t border-[var(--border)]">
