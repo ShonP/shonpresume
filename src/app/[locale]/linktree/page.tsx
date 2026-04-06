@@ -3,13 +3,19 @@
 import { FC } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Github, Linkedin, BookOpen, Home } from "lucide-react";
+import { Github, Linkedin, Globe, BookOpen, ExternalLink } from "lucide-react";
 
 interface ILinkItem {
   label: string;
   href: string;
   icon: React.ReactNode;
   external: boolean;
+}
+
+interface ISideProject {
+  name: string;
+  description: string;
+  href: string;
 }
 
 const LINKS: ILinkItem[] = [
@@ -21,27 +27,29 @@ const LINKS: ILinkItem[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/shon-pazarker/",
+    href: "https://www.linkedin.com/in/shonpazarker/",
     icon: <Linkedin size={20} />,
     external: true,
   },
   {
-    label: "AI Manga Reader",
-    href: "https://manga.equival.io/",
-    icon: <BookOpen size={20} />,
+    label: "Medium",
+    href: "https://medium.com/@pazshon1",
+    icon: <MediumIcon />,
     external: true,
   },
   {
-    label: "Portfolio",
+    label: "Website",
     href: "/",
-    icon: <Home size={20} />,
+    icon: <Globe size={20} />,
     external: false,
   },
+];
+
+const SIDE_PROJECTS: ISideProject[] = [
   {
-    label: "Reddit",
-    href: "https://www.reddit.com/user/LifeSubstantial5234",
-    icon: <RedditIcon />,
-    external: true,
+    name: "AI Manga Reader",
+    description: "Translate manga to any language with AI",
+    href: "https://manga.equival.io/",
   },
 ];
 
@@ -64,32 +72,22 @@ const itemVariants = {
   },
 };
 
-function RedditIcon() {
+function MediumIcon() {
   return (
     <svg
       width="20"
       height="20"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
     >
-      <circle cx="12" cy="14" r="7" />
-      <circle cx="9" cy="12.5" r="1" fill="currentColor" />
-      <circle cx="15" cy="12.5" r="1" fill="currentColor" />
-      <path d="M9.5 16.5c1 1 4 1 5 0" />
-      <path d="M17 7l2-2" />
-      <circle cx="19.5" cy="4.5" r="1.5" />
-      <path d="M12 7V3" />
+      <path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12Zm7.42 0c0 3.54-1.51 6.42-3.38 6.42S14.2 15.54 14.2 12s1.52-6.42 3.38-6.42 3.38 2.88 3.38 6.42ZM24 12c0 3.17-.53 5.75-1.19 5.75S21.62 15.17 21.62 12s.53-5.75 1.19-5.75S24 8.83 24 12Z" />
     </svg>
   );
 }
 
-const LinksPage: FC = () => {
+const LinktreePage: FC = () => {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12">
+    <div className="relative min-h-screen flex flex-col items-center px-4 py-12">
       {/* Animated gradient background */}
       <motion.div
         className="pointer-events-none fixed inset-0 opacity-30"
@@ -111,7 +109,7 @@ const LinksPage: FC = () => {
       {/* Noise/grain overlay for premium feel */}
       <div className="pointer-events-none fixed inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
 
-      <div className="relative z-10 flex w-full max-w-md flex-col items-center gap-8">
+      <div className="relative z-10 flex w-full max-w-md flex-col items-center gap-8 mt-8">
         {/* Profile photo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -154,6 +152,45 @@ const LinksPage: FC = () => {
             </motion.li>
           ))}
         </motion.ul>
+
+        {/* Side Projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1 }}
+          className="w-full"
+        >
+          <h2 className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-[var(--muted)]">
+            Side Projects
+          </h2>
+          <div className="flex flex-col gap-3">
+            {SIDE_PROJECTS.map((project) => (
+              <a
+                key={project.name}
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)]/40 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-[var(--primary)]/50 hover:bg-[var(--card-hover)]/80 hover:shadow-[0_0_24px_-6px_var(--primary)] active:scale-[0.98]"
+              >
+                <span className="text-[var(--muted)] transition-colors duration-300 group-hover:text-[var(--primary)]">
+                  <BookOpen size={20} />
+                </span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-[var(--foreground)]">
+                    {project.name}
+                  </p>
+                  <p className="text-xs text-[var(--muted)] truncate">
+                    {project.description}
+                  </p>
+                </div>
+                <ExternalLink
+                  size={14}
+                  className="shrink-0 text-[var(--muted)] transition-colors duration-300 group-hover:text-[var(--primary)]"
+                />
+              </a>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Footer */}
         <motion.p
@@ -207,4 +244,4 @@ const LinkButton: FC<ILinkItem> = ({ label, href, icon, external }) => {
   );
 };
 
-export default LinksPage;
+export default LinktreePage;
